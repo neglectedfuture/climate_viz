@@ -5,7 +5,7 @@
 # The HadCRUT4 data set." Journal of Geophysical Research: Atmospheres 117.D8 (2012).
 # https://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/download.html
 
-# I use the decadally-smoothed data, and include the most conservative uncertainty estimate.
+# NB: I use the decadally-smoothed data, and include the most conservative uncertainty estimate.
 
 library(ggplot2)
 library(gganimate)
@@ -37,6 +37,8 @@ head(df)
 
 mlt <- melt(df[,c('year','median','lower95','upper95')], id.vars=c('year'))
 
+
+#--- First, simple static plot:
 p <- ggplot() + geom_line(aes(y=value, x=year, group=variable, color=variable), data=mlt)+theme_bw()+
   scale_x_continuous(breaks = c(1860, 1880, 1900, 1920, 1940, 1960, 1980, 2000, 2019 ))+
   scale_y_continuous(breaks = c(-0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8)) +
